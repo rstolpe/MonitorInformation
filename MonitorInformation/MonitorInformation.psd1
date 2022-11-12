@@ -12,7 +12,7 @@
     RootModule        = '.\MonitorInformation.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.1'
+    ModuleVersion     = '0.0.2'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -98,16 +98,16 @@
             # Tags = @()
 
             # A URL to the license for this module.
-            LicenseUri   = 'https://github.com/rstolpe/Get-MonitorInformation/blob/main/LICENSE'
+            LicenseUri   = 'https://github.com/rstolpe/MonitorInformation/blob/main/LICENSE'
 
             # A URL to the main website for this project.
-            ProjectUri   = 'https://github.com/rstolpe/Get-MonitorInformation'
+            ProjectUri   = 'https://github.com/rstolpe/MonitorInformation'
 
             # A URL to an icon representing this module.
             # IconUri = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'https://github.com/rstolpe/Get-MonitorInformation/releases'
+            ReleaseNotes = 'https://github.com/rstolpe/MonitorInformation/releases'
 
             # Prerelease string of this module
             # Prerelease = ''
