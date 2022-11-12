@@ -16,5 +16,5 @@ If you use this function on a remote computer you need to make sure that you hav
 
 # Install
 ```
-Install-Module -Name Get-MonitorInformation
+Install-Module -Name MonitorInformation
 ```
