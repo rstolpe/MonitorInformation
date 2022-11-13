@@ -1,5 +1,5 @@
-# Get-MonitorInformation
-This function will return information about the monitor from either local or remote computer.   
+# MonitorInformation
+This function will return information about monitors from local or remote computer.   
 ### This script will return the following information
 - Is the monitor active? (connected)
 - Manufacturer Name
@@ -18,3 +18,19 @@ If you use this function on a remote computer you need to make sure that you hav
 ```
 Install-Module -Name MonitorInformation
 ```
+
+# Example
+```
+Get-MonitorInformation
+```
+Returns information about monitors that are connected to the local computer.  
+
+```
+Get-MonitorInformation -Computer "Win11"
+```
+Returns information about monitors that are connected to the remote computer named "Win11".  
+
+```
+Get-MonitorInformation -Computer "Win10,Win11"
+```
+Returns information about monitors that are connected to the remote computers named "Win10" and "Win11"
