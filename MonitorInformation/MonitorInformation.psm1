@@ -37,6 +37,12 @@ Function Get-MonitorInformation {
         # Return information about the monitor from both remote computer named Win10 and Win11
         Get-MonitorInformation -Computer "Win10,Win11"
 
+        .NOTES
+        Author:  Robin Stolpe
+        Website: https://stolpe.io
+        GitHub:  https://github.com/rstolpe
+        Mail:    robin@stolpe.io
+        Twitter: @rstolpes
     #>
 
     [CmdletBinding()]
