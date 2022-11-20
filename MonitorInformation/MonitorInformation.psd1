@@ -26,7 +26,7 @@
     RootModule        = '.\MonitorInformation.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.0.3'
+    ModuleVersion     = '0.0.4'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -124,7 +124,7 @@
             ReleaseNotes             = 'https://github.com/rstolpe/MonitorInformation/releases'
 
             # Prerelease string of this module
-            Prerelease               = 'https://github.com/rstolpe/MonitorInformation/releases/tag/0.0.4'
+            # Prerelease               = 'https://github.com/rstolpe/MonitorInformation/releases/tag/0.0.5'
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
             RequireLicenseAcceptance = $false
