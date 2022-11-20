@@ -46,29 +46,34 @@ Function Get-MonitorInformation {
         PSGallery:  https://www.powershellgallery.com/profiles/rstolpe
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding()] 
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Write the name of the computer that you want to return monitor information from")]
         [String]$ComputerName = "localhost"
     )
 
     foreach ($Computer in $ComputerName.Split(",").Trim()) {
-        try {
-            Write-Host "`n== Monitor information from $($Computer) ==`n"
-            Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi | Foreach-Object {
-                [PSCustomObject]@{
-                    Active                = $_.Active
-                    'Manufacturer Name'   = ($_.ManufacturerName | ForEach-Object { [char]$_ }) -join ""
-                    'Model'               = ($_.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
-                    'Serial Number'       = ($_.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
-                    'Year Of Manufacture' = $_.YearOfManufacture
-                    'Week Of Manufacture' = $_.WeekOfManufacture
+        if (Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue) {
+            try {
+                Write-Host "`n== Monitor information from $($Computer) ==`n"
+                foreach ($MonInfo in $(Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi)) {
+                    [PSCustomObject]@{
+                        Active                = $MonInfo.Active
+                        'Manufacturer Name'   = ($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join ""
+                        'Model'               = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
+                        'Serial Number'       = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
+                        'Year Of Manufacture' = $MonInfo.YearOfManufacture
+                        'Week Of Manufacture' = $MonInfo.WeekOfManufacture
+                    }
                 }
-            } | Format-Table
+            }
+            catch {
+                Write-Error "$($PSItem.Exception)"
+                Continue
+            }
         }
-        catch {
-            Write-Error "$($PSItem.Exception)"
-            Continue
+        else {
+            Write-Host "$($Computer) are not connected to the network or it's trouble with WinRM"
         }
     }
 }
