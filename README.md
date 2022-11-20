@@ -21,16 +21,16 @@ Install-Module -Name MonitorInformation
 
 # Example
 ```
-Get-MonitorInformation
+Get-RSMonitorInformation
 ```
 Returns information about monitors that are connected to the local computer.  
 
 ```
-Get-MonitorInformation -ComputerName "Win11"
+Get-RSMonitorInformation -ComputerName "Win11"
 ```
 Returns information about monitors that are connected to the remote computer named "Win11".  
 
 ```
-Get-MonitorInformation -ComputerName "Win10,Win11"
+Get-RSMonitorInformation -ComputerName "Win10,Win11"
 ```
 Returns information about monitors that are connected to the remote computers named "Win10" and "Win11"
