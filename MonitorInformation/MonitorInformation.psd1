@@ -109,7 +109,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags         = @("Windows", "PowerShell", "Support-Tools", "IT-Tools", "Monitor", "MonitorInformation")
+            Tags         = @("Windows", "PowerShell", "Support-Tools", "IT-Tools", "Monitor", "MonitorInformation", "sysadmin-tools")
 
             # A URL to the license for this module.
             LicenseUri   = 'https://github.com/rstolpe/MonitorInformation/blob/main/LICENSE'
