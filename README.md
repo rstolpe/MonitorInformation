@@ -11,12 +11,15 @@ This function will return information about monitors from local or remote comput
 
 If you use this function on a remote computer you need to make sure that you have [WinRM](https://github.com/rstolpe/Guides/blob/main/Windows/WinRM_GPO.md) activated.
 
-### Links
-- [YouTube Video of the script](https://youtu.be/XMbKucfpr38)
-
 # Install
+Install for current user
 ```
-Install-Module -Name MonitorInformation
+Install-Module -Name MonitorInformation -Scope CurrentUser -Force
+```
+  
+Install for all users
+```
+Install-Module -Name MonitorInformation -Scope AllUsers -Force
 ```
 
 # Example
