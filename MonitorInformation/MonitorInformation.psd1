@@ -47,7 +47,7 @@
     Description       = 'Returns monitor information for Windows computers both from local and remote computers'
 
     # Minimum version of the PowerShell engine required by this module
-    # PowerShellVersion = ''
+    PowerShellVersion = '5.1'
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''
@@ -109,25 +109,25 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags         = @("Windows", "PowerShell", "Support-Tools", "IT-Tools", "Monitor", "MonitorInformation", "sysadmin-tools")
+            Tags                     = @("Windows", "PowerShell", "Support-Tools", "IT-Tools", "Monitor", "MonitorInformation", "sysadmin-tools")
 
             # A URL to the license for this module.
-            LicenseUri   = 'https://github.com/rstolpe/MonitorInformation/blob/main/LICENSE'
+            LicenseUri               = 'https://github.com/rstolpe/MonitorInformation/blob/main/LICENSE'
 
             # A URL to the main website for this project.
-            ProjectUri   = 'https://github.com/rstolpe/MonitorInformation'
+            ProjectUri               = 'https://github.com/rstolpe/MonitorInformation'
 
             # A URL to an icon representing this module.
             # IconUri = ''
 
             # ReleaseNotes of this module
-            ReleaseNotes = 'https://github.com/rstolpe/MonitorInformation/releases'
+            ReleaseNotes             = 'https://github.com/rstolpe/MonitorInformation/releases'
 
             # Prerelease string of this module
-            # Prerelease = ''
+            Prerelease               = 'https://github.com/rstolpe/MonitorInformation/releases/tag/0.0.4'
 
             # Flag to indicate whether the module requires explicit user acceptance for install/update/save
-            # RequireLicenseAcceptance = $false
+            RequireLicenseAcceptance = $false
 
             # External dependent modules of this module
             # ExternalModuleDependencies = @()
