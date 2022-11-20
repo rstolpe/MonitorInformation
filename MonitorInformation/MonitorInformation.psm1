@@ -31,11 +31,11 @@ Function Get-MonitorInformation {
 
         .EXAMPLE
         # Return information about the monitor on a remote computer named "Win11"
-        Get-MonitorInformation -Computer "Win11"
+        Get-MonitorInformation -ComputerName "Win11"
 
         .EXAMPLE
         # Return information about the monitor from both remote computer named Win10 and Win11
-        Get-MonitorInformation -Computer "Win10,Win11"
+        Get-MonitorInformation -ComputerName "Win10,Win11"
 
         .NOTES
         Author:  Robin Stolpe
@@ -47,10 +47,11 @@ Function Get-MonitorInformation {
 
     [CmdletBinding()]
     Param(
-        [String]$Computer = "localhost"
+        [Parameter(Mandatory = $false, HelpMessage = "Write the name of the computer that you want to return monitor information from")]
+        [String]$ComputerName = "localhost"
     )
 
-    foreach ($Computer in $Computer.Split(",").Trim()) {
+    foreach ($Computer in $ComputerName.Split(",").Trim()) {
         try {
             Write-Host "`n== Monitor information from $($Computer) ==`n"
             Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi | Foreach-Object {
