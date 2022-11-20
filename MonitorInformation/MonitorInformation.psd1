@@ -41,7 +41,7 @@
     CompanyName       = 'Stolpe.io'
 
     # Copyright statement for this module
-    Copyright         = '(c) Robin Stolpe. All rights reserved.'
+    Copyright         = '(c) 2022 Robin Stolpe. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description       = 'Returns monitor information for Windows computers both from local and remote computers'
