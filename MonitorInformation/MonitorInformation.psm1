@@ -38,11 +38,12 @@ Function Get-MonitorInformation {
         Get-MonitorInformation -ComputerName "Win10,Win11"
 
         .NOTES
-        Author:  Robin Stolpe
-        Website: https://stolpe.io
-        GitHub:  https://github.com/rstolpe
-        Mail:    robin@stolpe.io
-        Twitter: @rstolpes
+        Author:     Robin Stolpe
+        Mail:       robin@stolpe.io
+        Twitter:    @rstolpes
+        Website:    https://stolpe.io
+        GitHub:     https://github.com/rstolpe
+        PSGallery:  https://www.powershellgallery.com/profiles/rstolpe
     #>
 
     [CmdletBinding()]
