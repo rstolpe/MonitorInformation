@@ -40,7 +40,7 @@
     foreach ($Computer in $ComputerName.Split(",").Trim()) {
         if (Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue) {
             try {
-                Write-Host "`n== Monitor information from $($Computer) ==`n"
+                Write-Output "`n== Monitor information from $($Computer) ==`n"
                 foreach ($MonInfo in $(Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi)) {
                     [PSCustomObject]@{
                         Active                = $MonInfo.Active
