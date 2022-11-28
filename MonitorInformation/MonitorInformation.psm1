@@ -1,6 +1,5 @@
-﻿<#
-    Copyright (C) 2022  Robin Stolpe
-    <https://stolpe.io>
+<#
+    Copyright (C) 2022 Robin Stolpe. <https://stolpe.io>
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -11,8 +10,9 @@
     GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#>
-
+    #>
+#
+#
 Function Get-RSMonitorInformation {
     <#
         .SYNOPSIS
@@ -22,7 +22,7 @@ Function Get-RSMonitorInformation {
         With this script you can get information about all of the monitors that has been connected to a local or remote computer.
         You can also run this against multiple remote computers at the same time.
         
-        .PARAMETER Computer
+        .PARAMETER ComputerName
         If you want to run this against a remote computer you specify which computer with this parameter.
         
         .EXAMPLE
@@ -48,7 +48,7 @@ Function Get-RSMonitorInformation {
 
     [CmdletBinding()] 
     Param(
-        [Parameter(Mandatory = $false, HelpMessage = "Write the name of the computer that you want to return monitor information from")]
+        [Parameter(Mandatory = $false, HelpMessage = "Write computer name that you want to return monitor information from, multiple accepted if separated with ,")]
         [String]$ComputerName = "localhost"
     )
 
