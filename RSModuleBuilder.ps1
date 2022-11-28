@@ -15,7 +15,6 @@
 ## THIS IS A BETA OF A NEW FUNCTION THAT I'LL RELEASE LATER, DONT USE THIS FILE
 
 #Requires -Modules PSScriptAnalyzer
-Import-Module -Name $($ModuleFolderPath) -MinimumVersion $Version -Force
 
 # Creating ArrayList for use later in the script
 [System.Collections.ArrayList]$FunctionPSD = @()
@@ -66,20 +65,6 @@ foreach ($function in $MigrateFunction) {
 
     # Collect the name of all .ps1 files so it can be added as functions in the psd1 file.
     [void]($FunctionPSD.Add($function))
-}
-
-# if $MigrateFunction are not empty remove the last , from the $FunctionPSD ArrayList
-if ($null -ne $MigrateFunction) {
-    # I know that I need to fix this one, but it's the best I can think of for now to remove the last , in the ArrayList
-    # Bug! If the module only contain one function the , after the name are not removed, need to remove that
-    $FunctionPSD = $FunctionPSD | ForEach-Object {
-        if ( $FunctionPSD.IndexOf($_) -eq ($FunctionPSD.count - 1) ) {
-            $_.replace(",", "")
-        }
-        else {
-            $_
-        }
-    }
 }
 
 # Change the placeholder in the $outPSMFile file
