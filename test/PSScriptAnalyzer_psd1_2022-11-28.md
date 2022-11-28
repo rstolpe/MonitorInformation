@@ -1,73 +1,10 @@
 ﻿
-Line                 : 86
-Column               : 52
-Message              : Missing expression after ','.
-Extent               : 
-RuleName             : MissingExpressionAfterToken
-Severity             : ParseError
-ScriptName           : MonitorInformation.psd1
-ScriptPath           : /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1
-RuleSuppressionID    : 
-SuggestedCorrections : 
-IsSuppressed         : False
-
-Line                 : 89
-Column               : 5
-Message              : Unexpected token 'CmdletsToExport' in expression or statement.
-Extent               : CmdletsToExport
-RuleName             : UnexpectedToken
-Severity             : ParseError
-ScriptName           : MonitorInformation.psd1
-ScriptPath           : /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1
-RuleSuppressionID    : 
-SuggestedCorrections : 
-IsSuppressed         : False
-
-Line                 : 23
-Column               : 3
-Message              : Missing closing '}' in statement block or type definition.
-Extent               : 
-RuleName             : MissingEndCurlyBrace
-Severity             : ParseError
-ScriptName           : MonitorInformation.psd1
-ScriptPath           : /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1
-RuleSuppressionID    : 
-SuggestedCorrections : 
-IsSuppressed         : False
-
-Line                 : 144
-Column               : 1
-Message              : Unexpected token '}' in expression or statement.
-Extent               : }
-RuleName             : UnexpectedToken
-Severity             : ParseError
-ScriptName           : MonitorInformation.psd1
-ScriptPath           : /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1
-RuleSuppressionID    : 
-SuggestedCorrections : 
-IsSuppressed         : False
-
 Line                 : 23
 Column               : 1
-Message              : The module manifest '/Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1' could not be processed because it is not a valid PowerShell module manifest file. Remove the elements that are not permitted: At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:86 char:52
-                       +     FunctionsToExport = "Get-RSMonitorInformation",
-                       +                                                    ~
-                       Missing expression after ','.
-                       
-                       At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:89 char:5
-                       +     CmdletsToExport   = @()
-                       +     ~~~~~~~~~~~~~~~
-                       Unexpected token 'CmdletsToExport' in expression or statement.
-                       
-                       At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:23 char:3
-                       + @{
-                       +   ~
-                       Missing closing '}' in statement block or type definition.
-                       
-                       At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:144 char:1
-                       + }
-                       + ~
-                       Unexpected token '}' in expression or statement.
+Message              : The module manifest '/Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1' could not be processed because it is not a valid PowerShell module manifest file. Remove the elements that are not permitted: At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:86 char:25
+                       +     FunctionsToExport = Get-RSMonitorInformation
+                       +                         ~~~~~~~~~~~~~~~~~~~~~~~~
+                       The command 'Get-RSMonitorInformation' is not allowed in restricted language mode or a Data section.
 Extent               : @{
                        
                            # Script module or binary module file associated with this manifest.
@@ -131,10 +68,65 @@ Extent               : @{
                            # NestedModules = @()
                        
                            # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-                           FunctionsToExport = "Get-RSMonitorInformation",
+                           FunctionsToExport = Get-RSMonitorInformation
                        
                            # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-                          
+                           CmdletsToExport   = @()
+                       
+                           # Variables to export from this module
+                           VariablesToExport = '*'
+                       
+                           # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
+                           AliasesToExport   = @()
+                       
+                           # DSC resources to export from this module
+                           # DscResourcesToExport = @()
+                       
+                           # List of all modules packaged with this module
+                           # ModuleList = @()
+                       
+                           # List of all files packaged with this module
+                           # FileList = @()
+                       
+                           # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
+                           PrivateData       = @{
+                       
+                               PSData = @{
+                       
+                                   # Tags applied to this module. These help with module discovery in online galleries.
+                                   Tags                     = @("Windows", "PowerShell", "Support-Tools", "IT-Tools", "Monitor", "MonitorInformation", "sysadmin-tools")
+                       
+                                   # A URL to the license for this module.
+                                   LicenseUri               = 'https://github.com/rstolpe/MonitorInformation/blob/main/LICENSE'
+                       
+                                   # A URL to the main website for this project.
+                                   ProjectUri               = 'https://github.com/rstolpe/MonitorInformation'
+                       
+                                   # A URL to an icon representing this module.
+                                   # IconUri = ''
+                       
+                                   # ReleaseNotes of this module
+                                   ReleaseNotes             = 'https://github.com/rstolpe/MonitorInformation/releases'
+                       
+                                   # Prerelease string of this module
+                                   # Prerelease               = ''
+                       
+                                   # Flag to indicate whether the module requires explicit user acceptance for install/update/save
+                                   RequireLicenseAcceptance = $false
+                       
+                                   # External dependent modules of this module
+                                   # ExternalModuleDependencies = @()
+                       
+                               } # End of PSData hashtable
+                       
+                           } # End of PrivateData hashtable
+                       
+                           # HelpInfo URI of this module
+                           # HelpInfoURI       = ''
+                       
+                           # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
+                           # DefaultCommandPrefix = ''
+                       }
 RuleName             : PSMissingModuleManifestField
 Severity             : Warning
 ScriptName           : MonitorInformation.psd1

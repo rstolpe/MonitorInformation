@@ -21,10 +21,10 @@ Function Get-RSMonitorInformation {
         .DESCRIPTION
         With this script you can get information about all of the monitors that has been connected to a local or remote computer.
         You can also run this against multiple remote computers at the same time.
-        
+
         .PARAMETER ComputerName
         If you want to run this against a remote computer you specify which computer with this parameter.
-        
+
         .EXAMPLE
         # Returns the information about the monitors on the local computer
         Get-RSMonitorInformation
@@ -46,7 +46,7 @@ Function Get-RSMonitorInformation {
         PSGallery:  https://www.powershellgallery.com/profiles/rstolpe
     #>
 
-    [CmdletBinding()] 
+    [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Write computer name that you want to return monitor information from, multiple accepted if separated with ,")]
         [String]$ComputerName = "localhost"
@@ -55,7 +55,7 @@ Function Get-RSMonitorInformation {
     foreach ($Computer in $ComputerName.Split(",").Trim()) {
         if (Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue) {
             try {
-                Write-Host "`n== Monitor information from $($Computer) ==`n"
+                Write-Output "`n== Monitor information from $($Computer) ==`n"
                 foreach ($MonInfo in $(Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi)) {
                     [PSCustomObject]@{
                         Active                = $MonInfo.Active
@@ -73,7 +73,7 @@ Function Get-RSMonitorInformation {
             }
         }
         else {
-            Write-Host "$($Computer) are not connected to the network or it's trouble with WinRM"
+            Write-Output "$($Computer) are not connected to the network or it's trouble with WinRM"
         }
     }
 }
