@@ -12,12 +12,7 @@
     [string]$apiKey
 )
 
-# When module creates this file add what version this file comes from for the EasyModuleBuild
-# Check if it's any newer version of this module, if it's any newer alert the user about it.
-# Create script will also populate the Company, PreReleaseTag, author and webpageURI for the manifest.
-
-# Need to find a way to handle -beta tags, might add a switch for that
-#$preReleaseTag = "beta"
+## THIS IS A BETA OF A NEW FUNCTION THAT I'LL RELEASE LATER, DONT USE THIS FILE
 
 #Requires -Modules PSScriptAnalyzer
 Import-Module -Name $($ModuleFolderPath) -MinimumVersion $Version -Force
