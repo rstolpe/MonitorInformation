@@ -1,9 +1,9 @@
 ﻿
 Line                 : 23
 Column               : 1
-Message              : The module manifest '/Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1' could not be processed because it is not a valid PowerShell module manifest file. Remove the elements that are not permitted: At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:86 char:25
-                       +     FunctionsToExport = Get-RSMonitorInformation
-                       +                         ~~~~~~~~~~~~~~~~~~~~~~~~
+Message              : The module manifest '/Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1' could not be processed because it is not a valid PowerShell module manifest file. Remove the elements that are not permitted: At /Users/rstolpe/Dev/GitHub/MonitorInformation/MonitorInformation/MonitorInformation.psd1:86 char:27
+                       +     FunctionsToExport = @(Get-RSMonitorInformation)
+                       +                           ~~~~~~~~~~~~~~~~~~~~~~~~
                        The command 'Get-RSMonitorInformation' is not allowed in restricted language mode or a Data section.
 Extent               : @{
                        
@@ -68,7 +68,7 @@ Extent               : @{
                            # NestedModules = @()
                        
                            # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-                           FunctionsToExport = Get-RSMonitorInformation
+                           FunctionsToExport = @(Get-RSMonitorInformation)
                        
                            # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
                            CmdletsToExport   = @()
