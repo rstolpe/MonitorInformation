@@ -67,7 +67,6 @@ foreach ($function in $MigrateFunction) {
 
     # Converting the function name to fit the .psd1 file for exporting
     $function = $function.Name -replace ".ps1"
-    $function = """$($function)"","
     [void]($function.trim())
 
     # Collect the name of all .ps1 files so it can be added as functions in the psd1 file.
