@@ -49,7 +49,9 @@ Function Get-RSMonitorInformation {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Write computer name that you want to return monitor information from, multiple accepted if separated with ,")]
-        [String]$ComputerName = "localhost"
+        [String]$ComputerName = "localhost",
+        [Parameter(Mandatory = $false, HelpMessage = "If used all monitor information will get export to csv file")]
+        [Switch]$Export = $false
     )
 
     foreach ($Computer in $ComputerName.Split(",").Trim()) {
@@ -65,7 +67,7 @@ Function Get-RSMonitorInformation {
                         'Year Of Manufacture' = $MonInfo.YearOfManufacture
                         'Week Of Manufacture' = $MonInfo.WeekOfManufacture
                     }
-                }
+                } # Add so it can export to csv if switch is activated
             }
             catch {
                 Write-Error "$($PSItem.Exception)"
