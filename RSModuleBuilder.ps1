@@ -23,8 +23,8 @@ $Year = (Get-Date).Year
 $TodaysDate = Get-Date -Format "yyyy-MM-dd"
 $ModuleName = $(Get-Location) -split "/" | Select-Object -last 1
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
-$HelpPath = Join-Path -Path $scriptPath -ChildPath "help"
 $ModuleFolderPath = Join-Path -Path $scriptPath -ChildPath $ModuleName
+$HelpPath = Join-Path -Path $scriptPath -ChildPath "help"
 $srcPath = Join-Path -Path $scriptPath -ChildPath ".src"
 $srcPublicFunctionPath = Join-Path -Path $srcPath -ChildPath "public/function"
 $outPSMFile = Join-Path -Path $ModuleFolderPath -ChildPath "$($ModuleName).psm1"
@@ -66,6 +66,9 @@ foreach ($function in $MigrateFunction) {
     # Collect the name of all .ps1 files so it can be added as functions in the psd1 file.
     [void]($FunctionPSD.Add($function))
 }
+
+$scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
+$ModuleFolderPath = Join-Path -Path $scriptPath -ChildPath $ModuleName
 
 # Change the placeholder in the $outPSMFile file
 Write-Verbose "Getting the content from file $($outPSMFile)"
