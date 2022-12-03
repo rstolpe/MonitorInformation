@@ -22,13 +22,17 @@
         # Return information about the monitor from both remote computer named Win10 and Win11
         Get-RSMonitorInformation -ComputerName "Win10,Win11"
 
+        .LINK
+        https://github.com/rstolpe/MonitorInformation/blob/main/README.md
+
         .NOTES
-        Author:     Robin Stolpe
-        Mail:       robin@stolpe.io
-        Twitter:    @rstolpes
-        Website:    https://stolpe.io
-        GitHub:     https://github.com/rstolpe
-        PSGallery:  https://www.powershellgallery.com/profiles/rstolpe
+        Author:         Robin Stolpe
+        Mail:           robin@stolpe.io
+        Twitter:        https://twitter.com/rstolpes
+        Linkedin:       https://www.linkedin.com/in/rstolpe/
+        Website/Blog:   https://stolpe.io
+        GitHub:         https://github.com/rstolpe
+        PSGallery:      https://www.powershellgallery.com/profiles/rstolpe
     #>
 
     [CmdletBinding()]

@@ -1,4 +1,4 @@
-<#
+﻿<#
     Copyright (C) 2022 Robin Stolpe. <https://stolpe.io>
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,21 +37,23 @@ Function Get-RSMonitorInformation {
         # Return information about the monitor from both remote computer named Win10 and Win11
         Get-RSMonitorInformation -ComputerName "Win10,Win11"
 
+        .LINK
+        https://github.com/rstolpe/MonitorInformation/blob/main/README.md
+
         .NOTES
-        Author:     Robin Stolpe
-        Mail:       robin@stolpe.io
-        Twitter:    @rstolpes
-        Website:    https://stolpe.io
-        GitHub:     https://github.com/rstolpe
-        PSGallery:  https://www.powershellgallery.com/profiles/rstolpe
+        Author:         Robin Stolpe
+        Mail:           robin@stolpe.io
+        Twitter:        https://twitter.com/rstolpes
+        Linkedin:       https://www.linkedin.com/in/rstolpe/
+        Website/Blog:   https://stolpe.io
+        GitHub:         https://github.com/rstolpe
+        PSGallery:      https://www.powershellgallery.com/profiles/rstolpe
     #>
 
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Write computer name that you want to return monitor information from, multiple accepted if separated with ,")]
-        [String]$ComputerName = "localhost",
-        [Parameter(Mandatory = $false, HelpMessage = "If used all monitor information will get export to csv file")]
-        [Switch]$Export = $false
+        [String]$ComputerName = "localhost"
     )
 
     foreach ($Computer in $ComputerName.Split(",").Trim()) {
@@ -67,7 +69,7 @@ Function Get-RSMonitorInformation {
                         'Year Of Manufacture' = $MonInfo.YearOfManufacture
                         'Week Of Manufacture' = $MonInfo.WeekOfManufacture
                     }
-                } # Add so it can export to csv if switch is activated
+                }
             }
             catch {
                 Write-Error "$($PSItem.Exception)"
