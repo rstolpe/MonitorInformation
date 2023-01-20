@@ -19,6 +19,7 @@ I have added the result from PSScriptAnalyzer in [test folder](https://github.co
 If you use this function on a remote computer you need to make sure that you have [WinRM](https://github.com/rstolpe/Guides/blob/main/Windows/WinRM_GPO.md) activated.
 
 # Links
+* [My PowerShell Collection](https://github.com/rstolpe/PSCollection)
 * [Webpage/Blog](https://www.stolpe.io)
 * [Twitter](https://twitter.com/rstolpes)
 * [LinkedIn](https://www.linkedin.com/in/rstolpe/)
@@ -53,4 +54,7 @@ Returns information about monitors that are connected to the remote computer nam
 ```
 Get-RSMonitorInformation -ComputerName "Win10", "Win11"
 ```
-Returns information about monitors that are connected to the remote computers named "Win10" and "Win11"
+Returns information about monitors that are connected to the remote computers named "Win10" and "Win11"  
+  
+It will return similar to this, but if you have more monitor then one you will see information listed from all of them.  
+![Screenshot 2023-01-20 at 15 44 00](https://user-images.githubusercontent.com/76907327/213726484-869fb7aa-26cb-45c1-85e9-931ba98e79c7.png)
