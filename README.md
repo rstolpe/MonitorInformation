@@ -1,4 +1,8 @@
-![GitHub](https://img.shields.io/github/license/rstolpe/MonitorInformation?style=plastic) ![GitHub last commit](https://img.shields.io/github/last-commit/rstolpe/MonitorInformation?style=plastic) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/rstolpe/MonitorInformation?sort=semver&style=plastic)  
+![GitHub](https://img.shields.io/github/license/rstolpe/MonitorInformation?style=plastic)  
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/rstolpe/MonitorInformation?sort=semver&style=plastic)  ![Last release](https://img.shields.io/github/release-date/rstolpe/MonitorInformation?style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/rstolpe/MonitorInformation?style=plastic)  
+![PSGallery downloads](https://img.shields.io/powershellgallery/dt/MonitorInformation?style=plastic)
+
 # MonitorInformation 
 This function will return information about monitors from local or remote computer.  
 I have added the result from PSScriptAnalyzer in [test folder](https://github.com/rstolpe/MonitorInformation/tree/main/test) 
@@ -47,6 +51,6 @@ Get-RSMonitorInformation -ComputerName "Win11"
 Returns information about monitors that are connected to the remote computer named "Win11".  
 
 ```
-Get-RSMonitorInformation -ComputerName "Win10,Win11"
+Get-RSMonitorInformation -ComputerName "Win10", "Win11"
 ```
 Returns information about monitors that are connected to the remote computers named "Win10" and "Win11"
