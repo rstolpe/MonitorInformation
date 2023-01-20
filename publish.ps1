@@ -1,2 +1,2 @@
-$ModulePath = "$PSScriptRoot\publish.ps1"
+$ModulePath = "$PSScriptRoot\MonitorInformation"
 Publish-Module -Path $ModulePath -NuGetApiKey $Env:PSGALLERY
