@@ -1,18 +1,27 @@
 ﻿<#
-    Copyright (C) 2023 Robin Stolpe. <https://stolpe.io>
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-    #>
-#
-#
+MIT License
+
+Copyright (C) 2023 Robin Stolpe.
+<https://stolpe.io>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+#>
 Function Get-RSMonitorInformation {
     <#
         .SYNOPSIS
@@ -24,18 +33,19 @@ Function Get-RSMonitorInformation {
 
         .PARAMETER ComputerName
         If you want to run this against a remote computer you specify which computer with this parameter.
+        You can add multiple computers like this: -ComputerName "Win11-Test", "Win10"
 
         .EXAMPLE
-        # Returns the information about the monitors on the local computer
         Get-RSMonitorInformation
+        # Returns information about the monitors on the local computer
 
         .EXAMPLE
-        # Return information about the monitor on a remote computer named "Win11"
         Get-RSMonitorInformation -ComputerName "Win11"
+        # Return information about the monitor on a remote computer named "Win11"
 
         .EXAMPLE
+        Get-RSMonitorInformation -ComputerName "Win10", "Win11"
         # Return information about the monitor from both remote computer named Win10 and Win11
-        Get-RSMonitorInformation -ComputerName "Win10,Win11"
 
         .LINK
         https://github.com/rstolpe/MonitorInformation/blob/main/README.md
@@ -52,14 +62,14 @@ Function Get-RSMonitorInformation {
 
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory = $false, HelpMessage = "Write computer name that you want to return monitor information from, multiple accepted if separated with ,")]
+        [Parameter(Mandatory = $false, HelpMessage = "Enter computer or computernames that you want to run this against")]
         [String]$ComputerName = "localhost"
     )
 
-    foreach ($Computer in $ComputerName.Split(",").Trim()) {
-        if (Test-WSMan -ComputerName $Computer -ErrorAction SilentlyContinue) {
+    foreach ($Computer in $ComputerName) {
+        if (Test-WSMan -ComputerName $Computer -ErrorAction 'SilentlyContinue') {
             try {
-                Write-Output "`n== Monitor information from $($Computer) ==`n"
+                Write-Output "`n=== Monitor information from $($Computer) ===`n"
                 foreach ($MonInfo in $(Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi)) {
                     [PSCustomObject]@{
                         Active                = $MonInfo.Active
