@@ -199,4 +199,4 @@ if ($Publish -eq $true) {
 }
 else {
     Write-Output "---/// $($ModuleName) version $($Version) is now prepared for publishing! ///---"
-}}
+}
