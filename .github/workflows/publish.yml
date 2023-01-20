@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Publish
         env:
-          NUGET_KEY: ${{ secrets.PSGALLERY }}
+          PSGALLERY: ${{ secrets.PSGALLERY }}
         run: .\publish.ps1
         shell: pwsh
