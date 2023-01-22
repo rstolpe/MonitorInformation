@@ -1,4 +1,5 @@
-﻿Function Get-RSMonitorInformation {
+﻿Function Get-RSMonitorInformation
+{
     <#
         .SYNOPSIS
         Returns information about all the monitors that has been connected to the computer
@@ -39,31 +40,45 @@
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Enter computer or computernames that you want to run this against")]
-        [String]$ComputerName = "localhost"
+        [Alias('computer', 'name')]
+        [String[]]$ComputerName = "localhost"
     )
 
-    foreach ($Computer in $ComputerName) {
-        if (Test-WSMan -ComputerName $Computer -ErrorAction 'SilentlyContinue') {
-            try {
-                Write-Output "`n=== Monitor information from $($Computer) ===`n"
-                foreach ($MonInfo in $(Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi)) {
+    foreach ($Computer in $ComputerName)
+    {
+        if (Test-WSMan -ComputerName $Computer -ErrorAction 'SilentlyContinue')
+        {
+            try
+            {
+                Write-Output "`n=== Monitor information from $Computer ===`n"
+                foreach ($MonInfo in $( Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi ))
+                {
                     [PSCustomObject]@{
-                        Active                = $MonInfo.Active
-                        'Manufacturer Name'   = ($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join ""
-                        'Model'               = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
-                        'Serial Number'       = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
+                        Active = $MonInfo.Active
+                        'Manufacturer Name' = ($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join ""
+                        Model = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
+                        'Serial Number' = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
                         'Year Of Manufacture' = $MonInfo.YearOfManufacture
                         'Week Of Manufacture' = $MonInfo.WeekOfManufacture
                     }
                 }
             }
-            catch {
-                Write-Error "$($PSItem.Exception)"
-                Continue
+            catch
+            {
+                Write-Error $PSItem.Exception
+                if ($ComputerName -ge 1)
+                {
+                    Continue
+                }
+                else
+                {
+                    break
+                }
             }
         }
-        else {
-            Write-Output "$($Computer) are not connected to the network or it's trouble with WinRM"
+        else
+        {
+            Write-Output "$Computer are not connected to the network or it's trouble with WinRM"
         }
     }
 }
