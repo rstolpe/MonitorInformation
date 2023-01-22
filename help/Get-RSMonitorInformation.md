@@ -7,7 +7,7 @@ SYNOPSIS
     
     
 SYNTAX
-    Get-RSMonitorInformation [[-ComputerName] <String>] [<CommonParameters>]
+    Get-RSMonitorInformation [[-ComputerName] <String[]>] [<CommonParameters>]
     
     
 DESCRIPTION
@@ -16,7 +16,7 @@ DESCRIPTION
     
 
 PARAMETERS
-    -ComputerName <String>
+    -ComputerName <String[]>
         If you want to run this against a remote computer you specify which computer with this parameter.
         You can add multiple computers like this: -ComputerName "Win11-Test", "Win10"
         
