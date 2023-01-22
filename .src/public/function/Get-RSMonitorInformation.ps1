@@ -51,17 +51,22 @@
             try
             {
                 Write-Output "`n=== Monitor information from $Computer ===`n"
-                foreach ($MonInfo in $( Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi ))
+                $CimSession = New-CimSession -ComputerName $Computer
+                if ($null -ne $CimSession)
                 {
-                    [PSCustomObject]@{
-                        Active = $MonInfo.Active
-                        'Manufacturer Name' = ($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join ""
-                        Model = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
-                        'Serial Number' = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
-                        'Year Of Manufacture' = $MonInfo.YearOfManufacture
-                        'Week Of Manufacture' = $MonInfo.WeekOfManufacture
+                    foreach ($MonInfo in $( Get-CimInstance -CimSession $CimSession -ClassName WmiMonitorID -Namespace root\wmi ))
+                    {
+                        [PSCustomObject]@{
+                            Active = $MonInfo.Active
+                            'Manufacturer Name' = Convert-MonitorManufacturer -Manufacturer $(($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join "")
+                            Model = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
+                            'Serial Number' = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
+                            'Year Of Manufacture' = $MonInfo.YearOfManufacture
+                            'Week Of Manufacture' = $MonInfo.WeekOfManufacture
+                        }
                     }
                 }
+                Remove-CimSession -InstanceId $CimSession.InstanceId
             }
             catch
             {
