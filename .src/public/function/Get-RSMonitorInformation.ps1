@@ -37,6 +37,8 @@
         PSGallery:      https://www.powershellgallery.com/profiles/rstolpe
     #>
 
+    # PNPDeviceID maps with InstanceName.trim("_0")
+
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Enter computer or computernames that you want to run this against")]
@@ -51,17 +53,29 @@
             try
             {
                 Write-Output "`n=== Monitor information from $Computer ===`n"
-                foreach ($MonInfo in $( Get-CimInstance -ComputerName $Computer -ClassName WmiMonitorID -Namespace root\wmi ))
+                $CimSession = New-CimSession -ComputerName $Computer
+                $PnPInfo = Get-CimInstance -CimSession $CimSession -ClassName Win32_DesktopMonitor
+                if ($null -ne $CimSession)
                 {
-                    [PSCustomObject]@{
-                        Active = $MonInfo.Active
-                        'Manufacturer Name' = ($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join ""
-                        Model = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
-                        'Serial Number' = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
-                        'Year Of Manufacture' = $MonInfo.YearOfManufacture
-                        'Week Of Manufacture' = $MonInfo.WeekOfManufacture
+                    foreach ($MonInfo in $( Get-CimInstance -CimSession $CimSession -ClassName WmiMonitorID -Namespace root\wmi ))
+                    {
+                        $DisplayPnPInfo = $PnPInfo | Where-Object {$MonInfo.InstanceName.trim("_0") -eq $_.PNPDeviceID}
+                        $GetManufacturer = $DisplayPnPInfo | Select-Object -ExpandProperty MonitorManufacturer
+                        $GetManufacturer2 = Convert-MonitorManufacturer -Manufacturer $(($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join "")
+
+                        [PSCustomObject]@{
+                            Active = $MonInfo.Active
+                            Status = $DisplayPnPInfo | Select-Object -ExpandProperty Status
+                            Availability = $DisplayPnPInfo | Select-Object -ExpandProperty Availability
+                            'Manufacturer Name' = if ($null -ne $GetManufacturer) { $GetManufacturer } else { $GetManufacturer2 }
+                            Model = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
+                            'Serial Number' = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
+                            'Year Of Manufacture' = $MonInfo.YearOfManufacture
+                            'Week Of Manufacture' = $MonInfo.WeekOfManufacture
+                        }
                     }
                 }
+                Remove-CimSession -InstanceId $CimSession.InstanceId
             }
             catch
             {
