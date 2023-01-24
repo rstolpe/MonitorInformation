@@ -9,6 +9,8 @@ I have added the result from PSScriptAnalyzer in [test folder](https://github.co
 
 ### This script will return the following information
 - Is the monitor active? (connected)
+- Status
+- Availability
 - Manufacturer Name
 - Model
 - Serial Number

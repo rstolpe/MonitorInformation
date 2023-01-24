@@ -37,6 +37,8 @@
         PSGallery:      https://www.powershellgallery.com/profiles/rstolpe
     #>
 
+    # PNPDeviceID maps with InstanceName.trim("_0")
+
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false, HelpMessage = "Enter computer or computernames that you want to run this against")]
@@ -52,13 +54,20 @@
             {
                 Write-Output "`n=== Monitor information from $Computer ===`n"
                 $CimSession = New-CimSession -ComputerName $Computer
+                $PnPInfo = Get-CimInstance -CimSession $CimSession -ClassName Win32_DesktopMonitor
                 if ($null -ne $CimSession)
                 {
                     foreach ($MonInfo in $( Get-CimInstance -CimSession $CimSession -ClassName WmiMonitorID -Namespace root\wmi ))
                     {
+                        $DisplayPnPInfo = $PnPInfo | Where-Object {$MonInfo.InstanceName.trim("_0") -eq $_.PNPDeviceID}
+                        $GetManufacturer = $DisplayPnPInfo | Select-Object -ExpandProperty MonitorManufacturer
+                        $GetManufacturer2 = Convert-MonitorManufacturer -Manufacturer $(($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join "")
+
                         [PSCustomObject]@{
                             Active = $MonInfo.Active
-                            'Manufacturer Name' = Convert-MonitorManufacturer -Manufacturer $(($MonInfo.ManufacturerName | ForEach-Object { [char]$_ }) -join "")
+                            Status = $DisplayPnPInfo | Select-Object -ExpandProperty Status
+                            Availability = $DisplayPnPInfo | Select-Object -ExpandProperty Availability
+                            'Manufacturer Name' = if ($null -ne $GetManufacturer) { $GetManufacturer } else { $GetManufacturer2 }
                             Model = ($MonInfo.UserFriendlyName | ForEach-Object { [char]$_ }) -join ""
                             'Serial Number' = ($MonInfo.SerialNumberID | ForEach-Object { [char]$_ }) -join ""
                             'Year Of Manufacture' = $MonInfo.YearOfManufacture
